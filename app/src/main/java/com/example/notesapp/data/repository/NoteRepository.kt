@@ -53,4 +53,23 @@ class NoteRepository(
             collection.document(note.id).set(note.copy(updatedAt = now)).await()
         }
     }
+
+    suspend fun setPinned(noteId: String, pinned: Boolean) {
+        updateFields(noteId, mapOf("pinned" to pinned))
+    }
+
+    suspend fun setArchived(noteId: String, archived: Boolean) {
+        updateFields(
+            noteId,
+            mapOf("archived" to archived, "updatedAt" to System.currentTimeMillis())
+        )
+    }
+
+    suspend fun deleteNote(noteId: String) {
+        notesCollection().document(noteId).delete().await()
+    }
+
+    private suspend fun updateFields(noteId: String, fields: Map<String, Any>) {
+        notesCollection().document(noteId).update(fields).await()
+    }
 }

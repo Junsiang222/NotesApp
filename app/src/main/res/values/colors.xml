@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
+    <string name="colour_label">Colour</string>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pin_active">#F59E0B</color>
     <color name="pin_inactive">#9CA3AF</color>
+    <color name="note_blue">#CBE8F6</color>
+    <color name="note_green">#D0EFDF</color>
+    <color name="note_yellow">#FBEEB5</color>
+    <color name="note_orange">#F9D8C3</color>
+    <color name="note_pink">#F8D0DC</color>
+    <color name="note_purple">#DDD8F5</color>
+    <color name="note_white">#FFFFFF</color>
 </resources>

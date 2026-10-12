@@ -1,5 +1,6 @@
 package com.example.notesapp.ui.editor
 
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -7,6 +8,8 @@ import com.example.notesapp.R
 import com.example.notesapp.data.model.Note
 import com.example.notesapp.databinding.FragmentNoteEditorBinding
 import com.example.notesapp.ui.base.BaseFragment
+import com.example.notesapp.ui.common.NoteColour
+import com.example.notesapp.ui.common.renderColourDots
 import com.example.notesapp.util.textValue
 import com.example.notesapp.util.toTagInput
 
@@ -33,6 +36,13 @@ class NoteEditorFragment : BaseFragment<FragmentNoteEditorBinding>(FragmentNoteE
     override fun observeViewModel() {
         observe(viewModel.loadedNote) { fillForm(it) }
         observe(viewModel.saved) { findNavController().popBackStack() }
+        observe(viewModel.colour) { colour ->
+            // The whole screen takes the note's colour
+            binding.root.setBackgroundColor(ContextCompat.getColor(requireContext(), colour.colorRes))
+            binding.colourPicker.renderColourDots(layoutInflater, NoteColour.entries, colour) {
+                viewModel.selectColour(it)
+            }
+        }
     }
 
     private fun fillForm(note: Note) {

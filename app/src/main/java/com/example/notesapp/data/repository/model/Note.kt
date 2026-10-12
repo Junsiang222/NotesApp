@@ -1,6 +1,7 @@
 package com.example.notesapp.data.model
 
 data class Note(
+    val colour: String = "blue",
     val id: String = "",
     val title: String = "",
     val content: String = "",

@@ -19,4 +19,4 @@ fun List<String>.toTagInput(): String = joinToString(", ")
 fun List<String>.toHashtags(): String = joinToString("  ") { "#$it" }
 
 fun Long.toDisplayDate(): String =
-    DateFormat.format("dd MMM yyyy, HH:mm", this).toString()
+    DateFormat.format("d MMM", this).toString()

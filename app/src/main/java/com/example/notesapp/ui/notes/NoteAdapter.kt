@@ -1,7 +1,11 @@
 package com.example.notesapp.ui.notes
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,8 +16,10 @@ import com.example.notesapp.databinding.ItemNoteBinding
 import com.example.notesapp.util.toDisplayDate
 import com.example.notesapp.util.toHashtags
 
+enum class NoteAction { OPEN, TOGGLE_PIN, TOGGLE_ARCHIVE, DELETE }
+
 class NoteAdapter(
-    private val onNoteClick: (Note) -> Unit
+    private val onAction: (Note, NoteAction) -> Unit
 ) : ListAdapter<Note, NoteAdapter.NoteViewHolder>(NoteDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -39,7 +45,29 @@ class NoteAdapter(
             binding.tagsText.isVisible = note.tags.isNotEmpty()
             binding.dateText.text = note.updatedAt.toDisplayDate()
 
-            binding.root.setOnClickListener { onNoteClick(note) }
+            // Pin icon is amber when pinned, grey when not
+            val pinColor = if (note.pinned) R.color.pin_active else R.color.pin_inactive
+            binding.pinButton.imageTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(context, pinColor))
+
+            binding.root.setOnClickListener { onAction(note, NoteAction.OPEN) }
+            binding.pinButton.setOnClickListener { onAction(note, NoteAction.TOGGLE_PIN) }
+            binding.moreButton.setOnClickListener { showPopup(it, note) }
+        }
+
+        private fun showPopup(anchor: View, note: Note) {
+            val popup = PopupMenu(anchor.context, anchor)
+            popup.inflate(R.menu.menu_note_item)
+            popup.menu.findItem(R.id.action_archive)
+                .setTitle(if (note.archived) R.string.restore else R.string.archive)
+            popup.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.action_archive -> onAction(note, NoteAction.TOGGLE_ARCHIVE)
+                    R.id.action_delete -> onAction(note, NoteAction.DELETE)
+                }
+                true
+            }
+            popup.show()
         }
     }
 

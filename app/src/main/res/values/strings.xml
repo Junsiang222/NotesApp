@@ -12,4 +12,16 @@
     <string name="register">Register</string>
     <string name="no_account">Don\'t have an account? Register</string>
     <string name="have_account">Already have an account? Log in</string>
+    <string name="notes_title">Notes</string>
+    <string name="add_note">Add note</string>
+    <string name="logout">Log out</string>
+    <string name="empty_notes">No notes yet.\nTap + to write your first one.</string>
+    <string name="untitled">Untitled</string>
+    <string name="new_note">New note</string>
+    <string name="edit_note">Edit note</string>
+    <string name="title">Title</string>
+    <string name="content">Write something…</string>
+    <string name="tags_hint">Tags (comma separated)</string>
+    <string name="save">Save</string>
+    <string name="back">Back</string>
 </resources>

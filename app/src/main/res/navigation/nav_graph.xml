@@ -32,5 +32,25 @@
     <fragment
         android:id="@+id/notesListFragment"
         android:name="com.example.notesapp.ui.notes.NotesListFragment"
-        android:label="Notes" />
+        android:label="Notes">
+        <action
+            android:id="@+id/action_list_to_editor"
+            app:destination="@id/noteEditorFragment" />
+        <action
+            android:id="@+id/action_list_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/noteEditorFragment"
+        android:name="com.example.notesapp.ui.editor.NoteEditorFragment"
+        android:label="Editor">
+        <argument
+            android:name="noteId"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
 </navigation>

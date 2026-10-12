@@ -21,7 +21,13 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.notesapp.ui.auth.RegisterFragment"
-        android:label="Register" />
+        android:label="Register">
+        <action
+            android:id="@+id/action_register_to_notes"
+            app:destination="@id/notesListFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/notesListFragment"

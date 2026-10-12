@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">NotesApp</string>
+    <string name="login_title">Welcome back</string>
+    <string name="login_subtitle">Log in to see your notes</string>
+    <string name="register_title">Create account</string>
+    <string name="register_subtitle">Sign up to start writing notes</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="login">Log in</string>
+    <string name="register">Register</string>
+    <string name="no_account">Don\'t have an account? Register</string>
+    <string name="have_account">Already have an account? Log in</string>
 </resources>
